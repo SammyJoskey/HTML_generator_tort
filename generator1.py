@@ -35,7 +35,7 @@ class Tag:
         elif self.tag == "p" or self.tag == "title" or self.tag == "h1":
             return self.opening + self.subtag + self.closing
         else:
-            return self.opening + self.subtag + "\n" + self.closing
+            return self.opening + self.subtag + '\n' + self.closing
         
     def __iadd__(self, other):
                 
@@ -47,9 +47,7 @@ class Tag:
         return self
 
 class HTML(Tag):
-
     def __init__(self, output="None"):
-
         self.output = output
         self.tag = "html"
         self.attrs = ""
@@ -58,12 +56,11 @@ class HTML(Tag):
         self.subtag = ""
 
     def __exit__(self, *args):
-    
         if self.output == "None":
             print(self)
             return self
         else:
-            print(f"saving to file {self.output}")
+            print(f"saving to {self.output}")
             file_object = open(self.output, "w", encoding = "utf-8")
             file_object.write(str(self))
             file_object.close()
@@ -71,6 +68,7 @@ class HTML(Tag):
     
 class TopLevelTag(Tag):
     is_single=False
+
 
 def main(output=None):
     with HTML(output=output) as doc: 
